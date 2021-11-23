@@ -1,6 +1,7 @@
+from tinydb import TinyDB, where
+
 from models.player_class import Tournament_Player
 from models.tournament_class import Tournament
-from tinydb import TinyDB, where
 from view.views import View
 
 
