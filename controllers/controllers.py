@@ -186,4 +186,3 @@ def create_tournament(player_list):
         view.display_out("%-12s %-12s %3s" % (player.name, player.surname,
                                               player.points))
     view.display_in("Appuyez sur Entrée pour continuer...")
-

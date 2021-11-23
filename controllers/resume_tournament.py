@@ -5,7 +5,7 @@ view = View()
 
 def convert_to_tuple(tournament, c_round):
 
-    for i in range(0, c_round+1):
+    for i in range(0, c_round + 1):
         if i == 0:
             r = tournament.r1_result
             t = []
@@ -45,7 +45,7 @@ def convert_to_tuple(tournament, c_round):
 def partial_round(tournament, player_list_top, player_list_bottom, match_id,
                   matchs_played, matchs, matchs_list):
     results = []
-    for i in range((4-matchs), 4):
+    for i in range((4 - matchs), 4):
         j = 0
         match = create_match(player_list_top[i], player_list_bottom[i],
                              matchs_played)
@@ -56,7 +56,7 @@ def partial_round(tournament, player_list_top, player_list_bottom, match_id,
             match_id += match[2]
             results.append(([player_list_top[i].name, match[0]],
                            [player_list_bottom[i].name, match[1]]))
-            tournament.matchs_list.append(matchs_list[j+1])
+            tournament.matchs_list.append(matchs_list[j + 1])
         j += 1
 
     return results, match_id, matchs_played
@@ -121,7 +121,7 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
     elif 0 < matchs < 4:
         matchs_list = []
         view.display_out(f"Round {str(c_round + 1)}")
-        for k in range((4-matchs), 4):
+        for k in range((4 - matchs), 4):
             view.display_out(f"{player_list_top[k].name} "
                              f"{player_list_top[k].surname} "
                              f"vs "
@@ -154,7 +154,7 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
         round_end = datetime.now().strftime("%H:%M:%S")
         tournament.rounds_list.append([round_name_l, round_start_l, round_end])
 
-        for i in range(c_round+1, int(tournament.turns)):
+        for i in range(c_round + 1, int(tournament.turns)):
             view.display_out(f"Round {str(i + 1)}")
             round_name = view.display_in("Nom du round : ")
             matchs_list = []

@@ -35,10 +35,3 @@ class View:
 
     def display_out(self, display):
         print(display)
-
-
-
-
-
-
-

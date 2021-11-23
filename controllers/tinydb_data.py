@@ -1,4 +1,4 @@
-from models.player_class import*
+from models.player_class import Tournament_Player
 from models.tournament_class import Tournament
 from tinydb import TinyDB, where
 from view.views import View
@@ -26,7 +26,7 @@ def add_tournament_data(tournament):
     tournaments_table = db.table("tournaments")
     players_list = []
     points_total = []
-    for i in range(0,8):
+    for i in range(0, 8):
         players_list.append(tournament.players_list[i].t_id)
         points_total.append(tournament.players_list[i].points)
     serialized_tournament = {
@@ -42,7 +42,7 @@ def add_tournament_data(tournament):
         'R3': tournament.r3_result,
         'R4': tournament.r4_result,
         'player_list': players_list,
-        'points_total' : points_total,
+        'points_total': points_total,
         'time_control': tournament.time_control,
         'description': tournament.description,
     }
@@ -54,7 +54,7 @@ def update_player_ranking(player_id, new_rank):
     db = TinyDB("players_db.json")
     players_table = db.table("players")
     data = players_table.all()
-    data = data[player_id-1]
+    data = data[player_id - 1]
     rank = data['ranking']
     name = data['name']
     surname = data['surname']
@@ -111,12 +111,12 @@ def display_matchs_list(key):
     db = TinyDB("tournaments_db.json")
     tournaments_table = db.table("tournaments")
     data = tournaments_table.all()
-    data = data[key-1]
+    data = data[key - 1]
     matchs_list = data["matchs_list"]
     i = 1
     j = 1
     for match in matchs_list:
-        if (i-1) % 4 == 0:
+        if (i - 1) % 4 == 0:
             view.display_out(f"\nRound {j}")
             j += 1
         view.display_out(match)
@@ -132,7 +132,7 @@ def display_tournament_players(key, option):
 
     display_list = []
     data = tournaments_table.all()
-    data = data[key-1]
+    data = data[key - 1]
     players_list = data["player_list"]
     points_total = data["points_total"]
 
