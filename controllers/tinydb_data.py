@@ -153,9 +153,9 @@ def display_tournament_players(key, option):
     elif option == 2:
         display_list = sorted(display_list, key=lambda x: x.ranking,
                               reverse=False)
-    view.display_out("Nom           Prénom        Classement Points")
+    view.display_out("Nom            | Prénom         | Classement | Points")
     for player in display_list:
-        view.display_out("%-13s %-13s %-10s %-5s" % (player.name,
+        view.display_out("%-16s %-16s %-12s %-3s" % (player.name,
                                                      player.surname,
                                                      player.ranking,
                                                      player.points))

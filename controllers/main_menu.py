@@ -36,9 +36,9 @@ def option2():
         player_list = sorted(player_list, key=lambda x: x.ranking,
                              reverse=False)
 
-    view.display_out("ID | Nom, Prénom          | Classement")
+    view.display_out("ID | Nom            | Prénom           | Classement")
     for player in player_list:
-        view.display_out("%-3s %-12s %-12s %3s" % (player.t_id, player.name,
+        view.display_out("%-4s %-16s %-16s %3s" % (player.t_id, player.name,
                                                    player.surname,
                                                    player.ranking))
     view.display_in("Appuyez sur Entrée pour continuer...")
