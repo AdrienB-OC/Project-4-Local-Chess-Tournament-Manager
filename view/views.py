@@ -20,11 +20,11 @@ class View:
     def tournament_input(self):
         name = input('Nom du tournoi : ')
         location = input('Lieu où se déroule le tournoi : ')
-        time_control = int(input(f'Contrôle du temps\n'
-                                 f'1 - Blitz\n'
-                                 f'2 - Bullet\n'
-                                 f'3 - Coup Rapide\n'
-                                 f'Entrez votre choix :'))
+        time_control = int(input('Contrôle du temps\n'
+                                 '1 - Blitz\n'
+                                 '2 - Bullet\n'
+                                 '3 - Coup Rapide\n'
+                                 'Entrez votre choix :'))
         description = input('Description : ')
 
         return name, location, time_control, description

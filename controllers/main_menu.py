@@ -24,9 +24,9 @@ def option1():
 
 def option2():
     player_list = fetch_all_data()
-    choice = view.display_in(f"1 - Lister par ordre alphabétique\n"
-                             f"2 - Lister par classement\n"
-                             f"Entrez votre choix : ")
+    choice = view.display_in("1 - Lister par ordre alphabétique\n"
+                             "2 - Lister par classement\n"
+                             "Entrez votre choix : ")
     if choice == '1':
         player_list = sorted(player_list, key=lambda x: x.surname,
                              reverse=False)
@@ -51,17 +51,17 @@ def option3():
 def option4():
     if os.path.isfile('./db.json'):
         try:
-            choice = view.display_in(f"Reprendre le tournoi en cours ? "
-                                     f"Vous ne pouvez pas commencer un "
-                                     f"nouveau tournoi en parallèle. \n"
-                                     f"1 - Oui\n"
-                                     f"2 - Non, plus tard\n"
-                                     f"3 - Supprimer les données du "
-                                     f"tournoi\n"
-                                     f"Votre choix : ")
+            choice = view.display_in("Reprendre le tournoi en cours ? "
+                                     "Vous ne pouvez pas commencer un "
+                                     "nouveau tournoi en parallèle. \n"
+                                     "1 - Oui\n"
+                                     "2 - Non, plus tard\n"
+                                     "3 - Supprimer les données du "
+                                     "tournoi\n"
+                                     "Votre choix : ")
         except choice not in {'1', '2', '3'}:
-            view.display_out(f"Choix invalide. Entrez un chiffre compris "
-                             f"entre 1 et 3")
+            view.display_out("Choix invalide. Entrez un chiffre compris "
+                             "entre 1 et 3")
         if choice == '1':
             data = load_data()
             partial_tournament(data[0], data[1], data[2],
@@ -77,8 +77,8 @@ def option4():
 
 def option5():
     tournaments_list = display_all_tournaments()
-    view.display_out(f"ID | Nom du Tournoi | Lieu où s'est déroulé le "
-                     f"tournoi | Date de début")
+    view.display_out("ID | Nom du Tournoi | Lieu où s'est déroulé le "
+                     "tournoi | Date de début")
     i = 1
     for tournament in tournaments_list:
         view.display_out("%-4s %-16s %-34s %5s" % (i, tournament.name,
@@ -87,15 +87,15 @@ def option5():
         i += 1
     choice = int(view.display_in("Entrez l'ID d'un tournoi "
                                  "pour plus de détails : "))
-    choice2 = int(view.display_in(f"1 - Liste des joueurs du tournoi\n"
-                                  f"2 - Liste des tours\n"
-                                  f"3 - Liste des matchs\n"
-                                  f"0 - Retour au menu\n"
-                                  f"Entrez votre choix : "))
+    choice2 = int(view.display_in("1 - Liste des joueurs du tournoi\n"
+                                  "2 - Liste des tours\n"
+                                  "3 - Liste des matchs\n"
+                                  "0 - Retour au menu\n"
+                                  "Entrez votre choix : "))
     if choice2 == 1:
-        choice3 = int(view.display_in(f"1 - Lister par ordre alphabétique\n"
-                                      f"2 - Lister par classement\n"
-                                      f"Entrez votre choix : "))
+        choice3 = int(view.display_in("1 - Lister par ordre alphabétique\n"
+                                      "2 - Lister par classement\n"
+                                      "Entrez votre choix : "))
         display_tournament_data(choice, choice2, choice3)
     elif choice != 0:
         display_tournament_data(choice, choice2, 0)
@@ -119,8 +119,5 @@ def main_menu():
             view.display_out('Fermeture du programme')
             exit()
         else:
-            view.display_out(f"Choix invalide. Entrez un chiffre compris "
-                             f"entre 1 et 6")
-
-
-main_menu()
+            view.display_out("Choix invalide. Entrez un chiffre compris "
+                             "entre 1 et 6")

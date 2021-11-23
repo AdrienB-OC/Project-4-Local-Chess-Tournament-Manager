@@ -183,5 +183,3 @@ def fetch_all_data():
     db.close()
 
     return player_list
-
-
