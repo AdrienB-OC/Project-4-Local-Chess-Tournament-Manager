@@ -24,7 +24,18 @@ def option1():
 
 def option2():
     player_list = fetch_all_data()
-    player_list = sorted(player_list, key=lambda x: x.ranking, reverse=False)
+    choice = view.display_in(f"1 - Lister par ordre alphabétique\n"
+                             f"2 - Lister par classement\n"
+                             f"Entrez votre choix : ")
+    if choice == '1':
+        player_list = sorted(player_list, key=lambda x: x.surname,
+                             reverse=False)
+        player_list = sorted(player_list, key=lambda x: x.name,
+                             reverse=False)
+    if choice == '2':
+        player_list = sorted(player_list, key=lambda x: x.ranking,
+                             reverse=False)
+
     view.display_out("ID | Nom, Prénom          | Classement")
     for player in player_list:
         view.display_out("%-3s %-12s %-12s %3s" % (player.t_id, player.name,
