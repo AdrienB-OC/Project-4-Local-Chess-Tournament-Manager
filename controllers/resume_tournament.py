@@ -85,25 +85,28 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
         for i in range(c_round, tournament.turns):
             matchs_list = []
             if x > 0:
-                round_name = view.display_in("Nom du round : ")
+                message = "Nom du round : "
+                round_name = view.display_in(message)
             x += 1
             pairs = pairing(player_list_top, player_list_bottom, match_id)
             player_list_top = pairs[0]
             player_list_bottom = pairs[1]
-            view.display_out(f"Round {str(i + 1)}")
+            message = f"Round {str(i + 1)}"
+            view.display_out(message)
             for j in range(0, 4):
-                view.display_out(f"{player_list_top[j].name} "
-                                 f"{player_list_top[j].surname} "
-                                 f"vs "
-                                 f"{player_list_bottom[j].name} "
-                                 f"{player_list_bottom[j].surname}")
+                message = (f"{player_list_top[j].name} "
+                           f"{player_list_top[j].surname} "
+                           f"vs "
+                           f"{player_list_bottom[j].name} "
+                           f"{player_list_bottom[j].surname}")
+                view.display_out(message)
                 matchs_list += [f"{player_list_top[j].name} "
                                 f"{player_list_top[j].surname} "
                                 f"vs "
                                 f"{player_list_bottom[j].name} "
                                 f"{player_list_bottom[j].surname}"]
-
-            view.display_in("Appuyez sur Entrée pour commencer le round...")
+            message = "Appuyez sur Entrée pour commencer le round..."
+            view.display_in(message)
             round_start = datetime.now().strftime("%H:%M:%S")
             r_result = create_round_loop(tournament, player_list_top,
                                          player_list_bottom, match_id,
@@ -119,26 +122,30 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
             elif i == 3:
                 tournament.r4_result += r_result[0]
             if len(r_result) == 4:
-                view.display_out('Tournoi mis en pause')
+                message = "Tournoi mis en pause"
+                view.display_out(message)
                 save_data(player_list_top, player_list_bottom, tournament,
                           match_id, matchs_played, round_name, round_start)
             round_end = datetime.now().strftime("%H:%M:%S")
             tournament.rounds_list.append([round_name, round_start, round_end])
     elif 0 < matchs < 4:
         matchs_list = []
-        view.display_out(f"Round {str(c_round + 1)}")
+        message = f"Round {str(c_round + 1)}"
+        view.display_out(message)
         for k in range((4 - matchs), 4):
-            view.display_out(f"{player_list_top[k].name} "
-                             f"{player_list_top[k].surname} "
-                             f"vs "
-                             f"{player_list_bottom[k].name} "
-                             f"{player_list_bottom[k].surname}")
+            message = (f"{player_list_top[k].name} "
+                       f"{player_list_top[k].surname} "
+                       f"vs "
+                       f"{player_list_bottom[k].name} "
+                       f"{player_list_bottom[k].surname}")
+            view.display_out(message)
             matchs_list += [f"{player_list_top[k].name} "
                             f"{player_list_top[k].surname} "
                             f"vs "
                             f"{player_list_bottom[k].name} "
                             f"{player_list_bottom[k].surname}"]
-        view.display_in("Appuyez sur Entrée pour commencer le round...")
+        message = "Appuyez sur Entrée pour commencer le round..."
+        view.display_in(message)
         r_result = partial_round(tournament, player_list_top,
                                  player_list_bottom, match_id,
                                  matchs_played, matchs, matchs_list)
@@ -154,31 +161,35 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
             tournament.r4_result += r_result[0]
 
         if len(r_result) == 4:
-            view.display_out('Tournoi mis en pause')
+            message = "Tournoi mis en pause"
+            view.display_out(message)
             save_data(player_list_top, player_list_bottom, tournament,
                       match_id, matchs_played, round_name_l, round_start_l)
         round_end = datetime.now().strftime("%H:%M:%S")
         tournament.rounds_list.append([round_name_l, round_start_l, round_end])
 
         for i in range(c_round + 1, int(tournament.turns)):
-            view.display_out(f"Round {str(i + 1)}")
-            round_name = view.display_in("Nom du round : ")
+            message = (f"Round {str(i + 1)}\n"
+                       f"Nom du round : ")
+            round_name = view.display_in(message)
             matchs_list = []
             pairs = pairing(player_list_top, player_list_bottom, match_id)
             player_list_top = pairs[0]
             player_list_bottom = pairs[1]
             for j in range(0, 4):
-                view.display_out(f"{player_list_top[j].name} "
-                                 f"{player_list_top[j].surname} "
-                                 f"vs "
-                                 f"{player_list_bottom[j].name} "
-                                 f"{player_list_bottom[j].surname}")
+                message = (f"{player_list_top[j].name} "
+                           f"{player_list_top[j].surname} "
+                           "vs "
+                           f"{player_list_bottom[j].name} "
+                           f"{player_list_bottom[j].surname}")
+                view.display_out(message)
                 matchs_list += [f"{player_list_top[j].name} "
                                 f"{player_list_top[j].surname} "
                                 f"vs "
                                 f"{player_list_bottom[j].name} "
                                 f"{player_list_bottom[j].surname}"]
-            view.display_in("Appuyez sur Entrée pour commencer le round...")
+            message = "Appuyez sur Entrée pour commencer le round..."
+            view.display_in(message)
             round_start = datetime.now().strftime("%H:%M:%S")
             r_result = create_round_loop(tournament, player_list_top,
                                          player_list_bottom, match_id,
@@ -193,20 +204,24 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
                 tournament.r4_result = r_result[0]
 
             if len(r_result) == 4:
-                view.display_out('Tournoi mis en pause')
+                message = "Tournoi mis en pause"
+                view.display_out(message)
                 save_data(player_list_top, player_list_bottom, tournament,
                           match_id, matchs_played, round_name, round_start)
             round_end = datetime.now().strftime("%H:%M:%S")
             tournament.rounds_list.append([round_name, round_start, round_end])
-
-    view.display_out('Tournoi terminé')
+    message = "Tournoi terminé"
+    view.display_out(message)
     tournament.end_date = datetime.today().strftime('%d-%m-%Y')
     add_tournament_data(tournament)
     player_list = player_list_top + player_list_bottom
     player_list = sorted(player_list, key=lambda x: x.points, reverse=True)
-    view.display_out("Classement final")
-    view.display_out("Nom        | Prénom     | Points")
+    message = ("Classement final\n"
+               "Nom        | Prénom     | Points")
+    view.display_out(message)
     for player in player_list:
-        view.display_out("%-12s %-12s %3s" % (player.name, player.surname,
+        message = ("%-12s %-12s %3s" % (player.name, player.surname,
                                               player.points))
-    view.display_in("Appuyez sur Entrée pour continuer...")
+        view.display_out(message)
+    message = "Appuyez sur Entrée pour continuer..."
+    view.display_in(message)

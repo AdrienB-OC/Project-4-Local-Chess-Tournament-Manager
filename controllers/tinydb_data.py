@@ -92,8 +92,9 @@ def display_all_tournaments():
 def display_rounds(key):
     db = TinyDB("tournaments_db.json")
     tournaments_table = db.table("tournaments")
-    view.display_out("Liste des tours : ")
-    view.display_out("Nom            Début           Fin")
+    message = ("Liste des tours : \n"
+               "Nom            Début           Fin")
+    view.display_out(message)
     for item in tournaments_table:
         if item.doc_id == int(key):
             rounds = item["rounds_list"]
@@ -101,11 +102,13 @@ def display_rounds(key):
             round_2 = rounds[1]
             round_3 = rounds[2]
             round_4 = rounds[3]
-    view.display_out(f"{round_1[0]}        {round_1[1]}        {round_1[2]}\n"
-                     f"{round_2[0]}        {round_2[1]}        {round_2[2]}\n"
-                     f"{round_3[0]}        {round_3[1]}        {round_3[2]}\n"
-                     f"{round_4[0]}        {round_4[1]}        {round_4[2]}")
-    view.display_in("Appuyez sur Entrée pour continuer...")
+    message = (f"{round_1[0]}        {round_1[1]}        {round_1[2]}\n"
+               f"{round_2[0]}        {round_2[1]}        {round_2[2]}\n"
+               f"{round_3[0]}        {round_3[1]}        {round_3[2]}\n"
+               f"{round_4[0]}        {round_4[1]}        {round_4[2]}")
+    view.display_out(message)
+    message = "Appuyez sur Entrée pour continuer..."
+    view.display_in(message)
 
 
 def display_matchs_list(key):
@@ -118,11 +121,13 @@ def display_matchs_list(key):
     j = 1
     for match in matchs_list:
         if (i - 1) % 4 == 0:
-            view.display_out(f"\nRound {j}")
+            message = f"\nRound {j}"
+            view.display_out(message)
             j += 1
         view.display_out(match)
         i += 1
-    view.display_in("Appuyez sur Entrée pour continuer...")
+    message = "Appuyez sur Entrée pour continuer..."
+    view.display_in(message)
 
 
 def display_tournament_players(key, option):
@@ -154,13 +159,16 @@ def display_tournament_players(key, option):
     elif option == 2:
         display_list = sorted(display_list, key=lambda x: x.ranking,
                               reverse=False)
-    view.display_out("Nom            | Prénom         | Classement | Points")
+    message = "Nom            | Prénom         | Classement | Points"
+    view.display_out(message)
     for player in display_list:
-        view.display_out("%-16s %-16s %-12s %-3s" % (player.name,
-                                                     player.surname,
-                                                     player.ranking,
-                                                     player.points))
-    view.display_in("Appuyez sur Entrée pour continuer...")
+        message = "%-16s %-16s %-12s %-3s" % (player.name,
+                                              player.surname,
+                                              player.ranking,
+                                              player.points)
+        view.display_out(message)
+    message = "Appuyez sur Entrée pour continuer..."
+    view.display_in(message)
 
 
 def display_tournament_data(key, choice, choice2):

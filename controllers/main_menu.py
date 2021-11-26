@@ -30,9 +30,10 @@ def option1():
 
 def option2():
     player_list = fetch_all_data()
-    choice = view.display_in("1 - Lister par ordre alphabétique\n"
-                             "2 - Lister par classement\n"
-                             "Entrez votre choix : ")
+    message = ("1 - Lister par ordre alphabétique\n"
+               "2 - Lister par classement\n"
+               "Entrez votre choix : ")
+    choice = view.display_in(message)
     if choice == '1':
         player_list = sorted(player_list, key=lambda x: x.surname,
                              reverse=False)
@@ -41,13 +42,15 @@ def option2():
     if choice == '2':
         player_list = sorted(player_list, key=lambda x: x.ranking,
                              reverse=False)
-
-    view.display_out("ID | Nom            | Prénom           | Classement")
+    message = "ID | Nom            | Prénom           | Classement"
+    view.display_out(message)
     for player in player_list:
-        view.display_out("%-4s %-16s %-16s %3s" % (player.t_id, player.name,
-                                                   player.surname,
-                                                   player.ranking))
-    view.display_in("Appuyez sur Entrée pour continuer...")
+        message = "%-4s %-16s %-16s %3s" % (player.t_id, player.name,
+                                            player.surname,
+                                            player.ranking)
+        view.display_out(message)
+    message = "Appuyez sur Entrée pour continuer..."
+    view.display_in(message)
 
 
 def option3():
@@ -57,17 +60,17 @@ def option3():
 def option4():
     if os.path.isfile('./db.json'):
         try:
-            choice = view.display_in("Reprendre le tournoi en cours ? "
-                                     "Vous ne pouvez pas commencer un "
-                                     "nouveau tournoi en parallèle. \n"
-                                     "1 - Oui\n"
-                                     "2 - Non, plus tard\n"
-                                     "3 - Supprimer les données du "
-                                     "tournoi\n"
-                                     "Votre choix : ")
+            message = ("Reprendre le tournoi en cours ? Vous ne pouvez pas "
+                       "commencer un nouveau tournoi en parallèle. \n"
+                       "1 - Oui\n"
+                       "2 - Non, plus tard\n"
+                       "3 - Supprimer les données du tournoi\n"
+                       "Entrez le chiffre correspondant à votre choix : ")
+            choice = view.display_in(message)
         except choice not in {'1', '2', '3'}:
-            view.display_out("Choix invalide. Entrez un chiffre compris "
-                             "entre 1 et 3")
+            message = ("Choix invalide. Entrez un chiffre compris "
+                       "entre 1 et 3")
+            view.display_out(message)
         if choice == '1':
             data = load_data()
             partial_tournament(data[0], data[1], data[2],
@@ -83,25 +86,29 @@ def option4():
 
 def option5():
     tournaments_list = display_all_tournaments()
-    view.display_out("ID | Nom du Tournoi | Lieu où s'est déroulé le "
-                     "tournoi | Date de début")
+    message = ("ID | Nom du Tournoi | Lieu où s'est déroulé le "
+               "tournoi | Date de début")
+    view.display_out(message)
     i = 1
     for tournament in tournaments_list:
-        view.display_out("%-4s %-16s %-34s %5s" % (i, tournament.name,
-                                                   tournament.location,
-                                                   tournament.start_date))
+        message = "%-4s %-16s %-34s %5s" % (i, tournament.name,
+                                            tournament.location,
+                                            tournament.start_date)
+        view.display_out(message)
         i += 1
-    choice = int(view.display_in("Entrez l'ID d'un tournoi "
-                                 "pour plus de détails : "))
-    choice2 = int(view.display_in("1 - Liste des joueurs du tournoi\n"
-                                  "2 - Liste des tours\n"
-                                  "3 - Liste des matchs\n"
-                                  "0 - Retour au menu\n"
-                                  "Entrez votre choix : "))
+    message = "Entrez l'ID d'un tournoi pour plus de détails : "
+    choice = int(view.display_in(message))
+    message = ("1 - Liste des joueurs du tournoi\n"
+               "2 - Liste des tours\n"
+               "3 - Liste des matchs\n"
+               "0 - Retour au menu\n"
+               "Entrez votre choix : ")
+    choice2 = int(view.display_in(message))
     if choice2 == 1:
-        choice3 = int(view.display_in("1 - Lister par ordre alphabétique\n"
-                                      "2 - Lister par classement\n"
-                                      "Entrez votre choix : "))
+        message = ("1 - Lister par ordre alphabétique\n"
+                   "2 - Lister par classement\n"
+                   "Entrez votre choix : ")
+        choice3 = int(view.display_in(message))
         display_tournament_data(choice, choice2, choice3)
     elif choice != 0:
         display_tournament_data(choice, choice2, 0)
@@ -110,7 +117,8 @@ def option5():
 def main_menu():
     while True:
         print_menu()
-        option = view.display_in('Entrez votre choix : ')
+        message = "Entrez votre choix : "
+        option = view.display_in(message)
         if option == '1':
             option1()
         elif option == '2':
@@ -122,8 +130,9 @@ def main_menu():
         elif option == '5':
             option5()
         elif option == '6':
-            view.display_out('Fermeture du programme')
+            message = "Fermeture du programme"
+            view.display_out(message)
             exit()
         else:
-            view.display_out("Choix invalide. Entrez un chiffre compris "
-                             "entre 1 et 6")
+            message = "Choix invalide. Entrez un chiffre compris entre 1 et 6"
+            view.display_out(message)

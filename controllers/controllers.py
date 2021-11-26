@@ -32,20 +32,23 @@ def create_match(player_1, player_2, matchs_played):
                                  str(int(player_1.t_id))]
                 if winner == '1':
                     player_1.points += 1
-                    view.display_out(f" {player_1.surname} {player_1.name} "
-                                     f"gagne !\n")
+                    message = (f" {player_1.surname} {player_1.name} "
+                               f"gagne !\n")
+                    view.display_out(message)
                     matchs_played += 1
                     return 'win', 'lose', match_id, matchs_played
                 elif winner == '2':
                     player_2.points += 1
-                    view.display_out(f" {player_2.surname} {player_2.name} "
-                                     f"gagne !\n")
+                    message = (f" {player_2.surname} {player_2.name} "
+                               f"gagne !\n")
+                    view.display_out(message)
                     matchs_played += 1
                     return 'lose', 'win', match_id, matchs_played
                 elif winner == '3':
                     player_1.points += 0.5
                     player_2.points += 0.5
-                    view.display_out('Match Nul !\n')
+                    message = "Match Nul !\n"
+                    view.display_out(message)
                     matchs_played += 1
                     return 'draw', 'draw', match_id, matchs_played
                 elif winner == '9':
@@ -53,9 +56,11 @@ def create_match(player_1, player_2, matchs_played):
                 break
 
             else:
-                view.display_out("Erreur, entrez un choix valide")
+                message = "Erreur, entrez un choix valide"
+                view.display_out(message)
         except ValueError:
-            view.display_out("Erreur, choix invalide")
+            message = "Erreur, choix invalide"
+            view.display_out(message)
 
 
 def create_round_loop(tournament, player_list_top, player_list_bottom,
@@ -81,13 +86,17 @@ def create_player_list():
     player_data = fetch_all_data()
     for i in range(0, 8):
         k = 1
-        view.display_out("ID | Nom        | Prénom       | Classement")
+        message = "ID | Nom        | Prénom       | Classement"
+        view.display_out(message)
         for j in range(len(player_data)):
-            view.display_out("%-4s %-12s %-12s %3s" % (k, player_data[j].name,
-                             player_data[j].surname, player_data[j].ranking))
+            message = ("%-4s %-12s %-12s %3s" % (k, player_data[j].name,
+                                                 player_data[j].surname,
+                                                 player_data[j].ranking))
+            view.display_out(message)
             k += 1
-        option = int(view.display_in("Entrez l'id correspondant au joueur que "
-                                     "vous souhaitez ajouter : "))
+        message = ("Entrez l'id correspondant au joueur que "
+                   "vous souhaitez ajouter : ")
+        option = int(view.display_in(message))
         option -= 1
         for item in enumerate(player_data):
             if item[0] == option:
@@ -112,25 +121,29 @@ def create_tournament(player_list):
     tournament.players_list = player_list
     turns = int(tournament.turns)
     for i in range(0, turns):
-        view.display_out(f"Round {str(i+1)} \n")
-        round_name = view.display_in("Nom du round : ")
+        message = f"Round {str(i+1)} \n"
+        view.display_out(message)
+        message = "Nom du round : "
+        round_name = view.display_in(message)
         matchs_list = []
         if i == 0:
             pairs = pairing_r1(player_list)
             player_list_top = pairs[0]
             player_list_bottom = pairs[1]
             for j in range(0, 4):
-                view.display_out(f"{player_list_top[j].name} "
-                                 f"{player_list_top[j].surname} "
-                                 f"vs "
-                                 f"{player_list_bottom[j].name} "
-                                 f"{player_list_bottom[j].surname}")
+                message = (f"{player_list_top[j].name} "
+                           f"{player_list_top[j].surname} "
+                           f"vs "
+                           f"{player_list_bottom[j].name} "
+                           f"{player_list_bottom[j].surname}")
+                view.display_out(message)
                 matchs_list += [f"{player_list_top[j].name} "
                                 f"{player_list_top[j].surname} "
                                 f"vs "
                                 f"{player_list_bottom[j].name} "
                                 f"{player_list_bottom[j].surname}"]
-            view.display_in("Appuyez sur Entrée pour commencer le round...")
+            message = "Appuyez sur Entrée pour commencer le round..."
+            view.display_in(message)
             round_start = datetime.now().strftime("%H:%M:%S")
             r_result = create_round_loop(tournament, player_list_top,
                                          player_list_bottom, match_id,
@@ -139,7 +152,8 @@ def create_tournament(player_list):
             matchs_played = r_result[2]
             tournament.r1_result += r_result[0]
             if len(r_result) == 4:
-                view.display_out('Tournoi mis en pause')
+                message = "Tournoi mis en pause"
+                view.display_out(message)
                 save_data(player_list_top, player_list_bottom, tournament,
                           match_id, matchs_played, round_name, round_start)
             round_end = datetime.now().strftime("%H:%M:%S")
@@ -149,18 +163,20 @@ def create_tournament(player_list):
             player_list_top = pairs[0]
             player_list_bottom = pairs[1]
             for j in range(0, 4):
-                view.display_out(f"{player_list_top[j].name} "
-                                 f"{player_list_top[j].surname} "
-                                 f"vs "
-                                 f"{player_list_bottom[j].name} "
-                                 f"{player_list_bottom[j].surname}")
+                message = (f"{player_list_top[j].name} "
+                           f"{player_list_top[j].surname} "
+                           f"vs "
+                           f"{player_list_bottom[j].name} "
+                           f"{player_list_bottom[j].surname}")
+                view.display_out(message)
                 matchs_list += [f"{player_list_top[j].name} "
                                 f"{player_list_top[j].surname} "
                                 f"vs "
                                 f"{player_list_bottom[j].name} "
                                 f"{player_list_bottom[j].surname}"]
-            view.display_in("Appuyez sur Entrée pour commencer le round...")
-            round_start = datetime.now().strftime("%H:%M:%S")
+            message = "Appuyez sur Entrée pour commencer le round..."
+            view.display_in(message)
+            round_start = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
             r_result = create_round_loop(tournament, player_list_top,
                                          player_list_bottom, match_id,
                                          matchs_played, matchs_list)
@@ -174,19 +190,24 @@ def create_tournament(player_list):
                 tournament.r4_result = r_result[0]
 
             if len(r_result) == 4:
-                view.display_out('Tournoi mis en pause')
+                message = "Tournoi mis en pause"
+                view.display_out(message)
                 save_data(player_list_top, player_list_bottom, tournament,
                           match_id, matchs_played, round_name, round_start)
             round_end = datetime.now().strftime("%H:%M:%S")
             tournament.rounds_list.append([round_name, round_start, round_end])
-    view.display_out('Tournoi terminé')
+    message = "Tournoi terminé !"
+    view.display_out(message)
     tournament.end_date = datetime.today().strftime('%d-%m-%Y')
     add_tournament_data(tournament)
     player_list = player_list_top + player_list_bottom
     player_list = sorted(player_list, key=lambda x: x.points, reverse=True)
-    view.display_out("Classement final")
-    view.display_out("Nom        | Prénom     | Points")
+    message = ("Classement final\n"
+               "Nom        | Prénom     | Points")
+    view.display_out(message)
     for player in player_list:
-        view.display_out("%-12s %-12s %3s" % (player.name, player.surname,
-                                              player.points))
-    view.display_in("Appuyez sur Entrée pour continuer...")
+        message = ("%-12s %-12s %3s" % (player.name, player.surname,
+                                        player.points))
+        view.display_out(message)
+    message = "Appuyez sur Entrée pour continuer..."
+    view.display_in(message)
