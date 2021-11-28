@@ -70,4 +70,4 @@ Activate the virtual environment then type :
 ```
 flake8 --format=html --htmldir=flake8_report
 ```
-Open the index.hmtl file (located in the flake8_report directory) in your browser to check the newly generated report.
+Open the index.html file (located in the flake8_report directory) in your browser to check the newly generated report.
