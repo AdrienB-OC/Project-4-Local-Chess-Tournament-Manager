@@ -93,7 +93,7 @@ def display_rounds(key):
     db = TinyDB("tournaments_db.json")
     tournaments_table = db.table("tournaments")
     message = ("Liste des tours : \n"
-               "Nom            Début           Fin")
+               "Nom            Début                      Fin")
     view.display_out(message)
     for item in tournaments_table:
         if item.doc_id == int(key):
@@ -111,21 +111,78 @@ def display_rounds(key):
     view.display_in(message)
 
 
+def fetch_matchs_result(key):
+    db = TinyDB("tournaments_db.json")
+    tournaments_table = db.table("tournaments")
+    data = tournaments_table.all()
+    data = data[key - 1]
+    r1_results = []
+    r2_results = []
+    r3_results = []
+    r4_results = []
+    r1 = data["R1"]
+    r2 = data["R2"]
+    r3 = data["R3"]
+    r4 = data["R4"]
+    for i in range(0, 4):
+        data = r1[i]
+        data_r2 = r2[i]
+        data_r3 = r3[i]
+        data_r4 = r4[i]
+
+        data2 = data[1]
+        data = data[0]
+        data2_r2 = data_r2[1]
+        data_r2 = data_r2[0]
+        data2_r3 = data_r3[1]
+        data_r3 = data_r3[0]
+        data2_r4 = data_r4[1]
+        data_r4 = data_r4[0]
+
+        r1_results += data + data2
+        r2_results += data_r2 + data2_r2
+        r3_results += data_r3 + data2_r3
+        r4_results += data_r4 + data2_r4
+
+    return r1_results, r2_results, r3_results, r4_results
+
+
 def display_matchs_list(key):
     db = TinyDB("tournaments_db.json")
     tournaments_table = db.table("tournaments")
     data = tournaments_table.all()
     data = data[key - 1]
     matchs_list = data["matchs_list"]
+    results = fetch_matchs_result(key)
+    results_r1 = results[0]
+    results_r2 = results[1]
+    results_r3 = results[2]
+    results_r4 = results[3]
     i = 1
     j = 1
+    k = 0
     for match in matchs_list:
         if (i - 1) % 4 == 0:
-            message = f"\nRound {j}"
+            k = 0
+            message = f"\nRound {j}\n" \
+                      f"Match                                    Résultat"
             view.display_out(message)
             j += 1
-        view.display_out(match)
+        if i < 5:
+            message = ("%-40s %-5s | %-5s" % (match, results_r1[k + 1],
+                                              results_r1[k + 3]))
+        elif i < 9:
+            message = ("%-40s %-5s | %-5s" % (match, results_r2[k + 1],
+                                              results_r2[k + 3]))
+        elif i < 13:
+            message = ("%-40s %-5s | %-5s" % (match, results_r3[k + 1],
+                                              results_r3[k + 3]))
+        elif i < 17:
+            message = ("%-40s %-5s | %-5s" % (match, results_r4[k + 1],
+                                              results_r4[k + 3]))
+        view.display_out(message)
         i += 1
+        k += 4
     message = "Appuyez sur Entrée pour continuer..."
     view.display_in(message)
 
@@ -159,6 +216,9 @@ def display_tournament_players(key, option):
     elif option == 2:
         display_list = sorted(display_list, key=lambda x: x.ranking,
                               reverse=False)
+    elif option == 3:
+        display_list = sorted(display_list, key=lambda x: x.points,
+                              reverse=True)
     message = "Nom            | Prénom         | Classement | Points"
     view.display_out(message)
     for player in display_list:
@@ -169,6 +229,7 @@ def display_tournament_players(key, option):
         view.display_out(message)
     message = "Appuyez sur Entrée pour continuer..."
     view.display_in(message)
+
 
 
 def display_tournament_data(key, choice, choice2):

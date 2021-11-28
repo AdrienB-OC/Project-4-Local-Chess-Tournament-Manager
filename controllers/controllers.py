@@ -144,7 +144,7 @@ def create_tournament(player_list):
                                 f"{player_list_bottom[j].surname}"]
             message = "Appuyez sur Entrée pour commencer le round..."
             view.display_in(message)
-            round_start = datetime.now().strftime("%H:%M:%S")
+            round_start = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             r_result = create_round_loop(tournament, player_list_top,
                                          player_list_bottom, match_id,
                                          matchs_played, matchs_list)
@@ -156,7 +156,7 @@ def create_tournament(player_list):
                 view.display_out(message)
                 save_data(player_list_top, player_list_bottom, tournament,
                           match_id, matchs_played, round_name, round_start)
-            round_end = datetime.now().strftime("%H:%M:%S")
+            round_end = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             tournament.rounds_list.append([round_name, round_start, round_end])
         elif i > 0:
             pairs = pairing(player_list_top, player_list_bottom, match_id)
@@ -194,7 +194,7 @@ def create_tournament(player_list):
                 view.display_out(message)
                 save_data(player_list_top, player_list_bottom, tournament,
                           match_id, matchs_played, round_name, round_start)
-            round_end = datetime.now().strftime("%H:%M:%S")
+            round_end = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             tournament.rounds_list.append([round_name, round_start, round_end])
     message = "Tournoi terminé !"
     view.display_out(message)

@@ -107,7 +107,7 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
                                 f"{player_list_bottom[j].surname}"]
             message = "Appuyez sur Entrée pour commencer le round..."
             view.display_in(message)
-            round_start = datetime.now().strftime("%H:%M:%S")
+            round_start = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             r_result = create_round_loop(tournament, player_list_top,
                                          player_list_bottom, match_id,
                                          matchs_played, matchs_list)
@@ -126,7 +126,7 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
                 view.display_out(message)
                 save_data(player_list_top, player_list_bottom, tournament,
                           match_id, matchs_played, round_name, round_start)
-            round_end = datetime.now().strftime("%H:%M:%S")
+            round_end = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             tournament.rounds_list.append([round_name, round_start, round_end])
     elif 0 < matchs < 4:
         matchs_list = []
@@ -165,7 +165,7 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
             view.display_out(message)
             save_data(player_list_top, player_list_bottom, tournament,
                       match_id, matchs_played, round_name_l, round_start_l)
-        round_end = datetime.now().strftime("%H:%M:%S")
+        round_end = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         tournament.rounds_list.append([round_name_l, round_start_l, round_end])
 
         for i in range(c_round + 1, int(tournament.turns)):
@@ -190,7 +190,7 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
                                 f"{player_list_bottom[j].surname}"]
             message = "Appuyez sur Entrée pour commencer le round..."
             view.display_in(message)
-            round_start = datetime.now().strftime("%H:%M:%S")
+            round_start = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             r_result = create_round_loop(tournament, player_list_top,
                                          player_list_bottom, match_id,
                                          matchs_played, matchs_list)
@@ -208,7 +208,7 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
                 view.display_out(message)
                 save_data(player_list_top, player_list_bottom, tournament,
                           match_id, matchs_played, round_name, round_start)
-            round_end = datetime.now().strftime("%H:%M:%S")
+            round_end = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             tournament.rounds_list.append([round_name, round_start, round_end])
     message = "Tournoi terminé"
     view.display_out(message)

@@ -107,6 +107,7 @@ def option5():
     if choice2 == 1:
         message = ("1 - Lister par ordre alphabétique\n"
                    "2 - Lister par classement\n"
+                   "3 - Lister par total de points\n"
                    "Entrez votre choix : ")
         choice3 = int(view.display_in(message))
         display_tournament_data(choice, choice2, choice3)
