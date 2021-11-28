@@ -86,12 +86,12 @@ def option4():
 
 def option5():
     tournaments_list = display_all_tournaments()
-    message = ("ID | Nom du Tournoi | Lieu où s'est déroulé le "
+    message = ("ID | Nom du Tournoi       | Lieu où s'est déroulé le "
                "tournoi | Date de début")
     view.display_out(message)
     i = 1
     for tournament in tournaments_list:
-        message = "%-4s %-16s %-34s %5s" % (i, tournament.name,
+        message = "%-4s %-22s %-34s %5s" % (i, tournament.name,
                                             tournament.location,
                                             tournament.start_date)
         view.display_out(message)
