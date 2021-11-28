@@ -70,4 +70,5 @@ Activate the virtual environment then type :
 ```
 flake8 --format=html --htmldir=flake8_report
 ```
-Open the index.html file (located in the flake8_report directory) in your browser to check the newly generated report.
+Open the index.html file (located in the flake8_report directory) in your browser to check the newly generated report.  
+flake8 is configured to ignore anything located in the .git and venv folder, check and modify "setup.cfg" if needed.
