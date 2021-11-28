@@ -9,19 +9,6 @@ from view.views import View
 
 
 view = View()
-menu_options = {
-    1: "Ajouter un joueur",
-    2: "Afficher la liste des joueurs",
-    3: "Mettre à jour le classement des joueurs",
-    4: "Nouveau Tournoi/Reprendre le tournoi en cours",
-    5: "Afficher la liste des tournois",
-    6: "Fermer le programme"
-}
-
-
-def print_menu():
-    for key in menu_options.keys():
-        view.display_out(f"{key} -- {menu_options[key]}")
 
 
 def option1():
@@ -117,7 +104,7 @@ def option5():
 
 def main_menu():
     while True:
-        print_menu()
+        view.print_menu()
         message = "Entrez votre choix : "
         option = view.display_in(message)
         if option == '1':

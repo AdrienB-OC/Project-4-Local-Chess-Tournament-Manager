@@ -3,8 +3,18 @@ from datetime import datetime
 
 class View:
     def player_input(self):
-        name = input("Nom du joueur : ")
-        surname = input("Prénom du joueur : ")
+        name = ""
+        while not (name and not name.isspace()):
+            name = input("Nom du joueur : ")
+            if not (name and not name.isspace()):
+                print("Entrez un nom valide")
+
+        surname = ""
+        while not (surname and not surname.isspace()):
+            surname = input("Prénom du joueur : ")
+            if not (surname and not surname.isspace()):
+                print("Entrez un prénom valide")
+
         date_format = "%d/%m/%Y"
         while True:
             birth_date = input("Date de Naissance (JJ/MM/AAAA) : ")
@@ -40,8 +50,18 @@ class View:
         return winner
 
     def tournament_input(self):
-        name = input('Nom du tournoi : ')
-        location = input('Lieu où se déroule le tournoi : ')
+        name = ""
+        while not (name and not name.isspace()):
+            name = input("Nom du tournoi : ")
+            if not (name and not name.isspace()):
+                print("Entrez un nom de tournoi valide")
+
+        location = ""
+        while not (location and not location.isspace()):
+            location = input('Lieu où se déroule le tournoi : ')
+            if not (location and not location.isspace()):
+                print("Entrez un lieu valide")
+
         while True:
             time_control = int(input('Contrôle du temps\n'
                                      '1 - Blitz\n'
@@ -62,3 +82,15 @@ class View:
 
     def display_out(self, display):
         print(display)
+
+    def print_menu(self):
+        menu_options = {
+            1: "Ajouter un joueur",
+            2: "Afficher la liste des joueurs",
+            3: "Mettre à jour le classement des joueurs",
+            4: "Nouveau Tournoi/Reprendre le tournoi en cours",
+            5: "Afficher la liste des tournois",
+            6: "Fermer le programme"
+        }
+        for key in menu_options.keys():
+            View.display_out(self, f"{key} -- {menu_options[key]}")
