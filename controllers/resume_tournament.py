@@ -212,7 +212,7 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
             tournament.rounds_list.append([round_name, round_start, round_end])
     message = "Tournoi terminé"
     view.display_out(message)
-    tournament.end_date = datetime.today().strftime('%d-%m-%Y')
+    tournament.end_date = datetime.today().strftime('%d/%m/%Y')
     add_tournament_data(tournament)
     player_list = player_list_top + player_list_bottom
     player_list = sorted(player_list, key=lambda x: x.points, reverse=True)
@@ -221,7 +221,7 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
     view.display_out(message)
     for player in player_list:
         message = ("%-12s %-12s %3s" % (player.name, player.surname,
-                                              player.points))
+                                        player.points))
         view.display_out(message)
     message = "Appuyez sur Entrée pour continuer..."
     view.display_in(message)

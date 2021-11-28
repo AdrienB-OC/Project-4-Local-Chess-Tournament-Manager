@@ -6,8 +6,8 @@ class Tournament:
                  description):
         self.name = name
         self.location = location
-        self.start_date = datetime.today().strftime('%d-%m-%Y')
-        self.end_date = datetime.today().strftime('%d-%m-%Y')
+        self.start_date = datetime.today().strftime('%d/%m/%Y')
+        self.end_date = datetime.today().strftime('%d/%m/%Y')
         self.turns = 4
         self.rounds_list = []
         self.r1_result = []

@@ -231,7 +231,6 @@ def display_tournament_players(key, option):
     view.display_in(message)
 
 
-
 def display_tournament_data(key, choice, choice2):
     if choice == 1:
         display_tournament_players(key, choice2)
