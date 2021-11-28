@@ -93,7 +93,7 @@ def display_rounds(key):
     db = TinyDB("tournaments_db.json")
     tournaments_table = db.table("tournaments")
     message = ("Liste des tours : \n"
-               "Nom            Début                      Fin")
+               "Nom                  Début                Fin")
     view.display_out(message)
     for item in tournaments_table:
         if item.doc_id == int(key):
@@ -102,11 +102,15 @@ def display_rounds(key):
             round_2 = rounds[1]
             round_3 = rounds[2]
             round_4 = rounds[3]
-    message = (f"{round_1[0]}        {round_1[1]}        {round_1[2]}\n"
-               f"{round_2[0]}        {round_2[1]}        {round_2[2]}\n"
-               f"{round_3[0]}        {round_3[1]}        {round_3[2]}\n"
-               f"{round_4[0]}        {round_4[1]}        {round_4[2]}")
+    message = "%-20s %-20s %-20s" % (round_1[0], round_1[1], round_1[2])
     view.display_out(message)
+    message = "%-20s %-20s %-20s" % (round_2[0], round_2[1], round_2[2])
+    view.display_out(message)
+    message = "%-20s %-20s %-20s" % (round_3[0], round_3[1], round_3[2])
+    view.display_out(message)
+    message = "%-20s %-20s %-20s" % (round_4[0], round_4[1], round_4[2])
+    view.display_out(message)
+
     message = "Appuyez sur Entrée pour continuer..."
     view.display_in(message)
 
