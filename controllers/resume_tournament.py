@@ -15,34 +15,30 @@ def convert_to_tuple(tournament, c_round):
         if i == 0:
             r = tournament.r1_result
             t = []
-            for j in range(0, len(r), 2):
+            for j in range(0, len(r)):
                 t1 = tuple(r[j])
-                t2 = tuple(r[j + 1])
-                t += [t1, t2]
+                t += [t1]
             tournament.r1_result = t
         elif i == 1:
             r = tournament.r2_result
             t = []
-            for j in range(0, len(r), 2):
+            for j in range(0, len(r)):
                 t1 = tuple(r[j])
-                t2 = tuple(r[j + 1])
-                t += [t1, t2]
+                t += [t1]
             tournament.r2_result = t
         elif i == 2:
             r = tournament.r3_result
             t = []
-            for j in range(0, len(r), 2):
+            for j in range(0, len(r)):
                 t1 = tuple(r[j])
-                t2 = tuple(r[j + 1])
-                t += [t1, t2]
+                t += [t1]
             tournament.r3_result = t
         elif i == 3:
             r = tournament.r4_result
             t = []
-            for j in range(0, len(r), 2):
+            for j in range(0, len(r)):
                 t1 = tuple(r[j])
-                t2 = tuple(r[j + 1])
-                t += [t1, t2]
+                t += [t1]
             tournament.r4_result = t
 
     return tournament
@@ -51,8 +47,8 @@ def convert_to_tuple(tournament, c_round):
 def partial_round(tournament, player_list_top, player_list_bottom, match_id,
                   matchs_played, matchs, matchs_list):
     results = []
+    j = 0
     for i in range((4 - matchs), 4):
-        j = 0
         match = create_match(player_list_top[i], player_list_bottom[i],
                              matchs_played)
         if match == 0:
@@ -62,7 +58,7 @@ def partial_round(tournament, player_list_top, player_list_bottom, match_id,
             match_id += match[2]
             results.append(([player_list_top[i].name, match[0]],
                            [player_list_bottom[i].name, match[1]]))
-            tournament.matchs_list.append(matchs_list[j + 1])
+            tournament.matchs_list.append(matchs_list[j])
         j += 1
 
     return results, match_id, matchs_played
@@ -84,7 +80,9 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
         x = 0
         for i in range(c_round, tournament.turns):
             matchs_list = []
-            if x > 0:
+            if x == 0:
+                round_name = round_name_l
+            else:
                 message = "Nom du round : "
                 round_name = view.display_in(message)
             x += 1
@@ -146,6 +144,8 @@ def partial_tournament(player_list_top, player_list_bottom, tournament,
                             f"{player_list_bottom[k].surname}"]
         message = "Appuyez sur Entrée pour commencer le round..."
         view.display_in(message)
+        print(matchs_list[0])
+        print(matchs_list[1])
         r_result = partial_round(tournament, player_list_top,
                                  player_list_bottom, match_id,
                                  matchs_played, matchs, matchs_list)
