@@ -17,10 +17,22 @@ def option1():
 
 def option2():
     player_list = fetch_all_data()
-    message = ("1 - Lister par ordre alphabétique\n"
-               "2 - Lister par classement\n"
-               "Entrez votre choix : ")
-    choice = view.display_in(message)
+    while True:
+        try:
+            message = ("1 - Lister par ordre alphabétique\n"
+                       "2 - Lister par classement\n"
+                       "Entrez votre choix : ")
+            choice = view.display_in(message)
+            if choice in {'1', '2'}:
+                break
+            else:
+                message = ("Choix invalide. Entrez un chiffre compris "
+                           "entre 1 et 2")
+                view.display_out(message)
+        except ValueError:
+            message = ("Choix invalide. Entrez un chiffre compris "
+                       "entre 1 et 2")
+            view.display_out(message)
     if choice == '1':
         player_list = sorted(player_list, key=lambda x: x.surname,
                              reverse=False)
@@ -46,18 +58,25 @@ def option3():
 
 def option4():
     if os.path.isfile('./db.json'):
-        try:
-            message = ("Reprendre le tournoi en cours ? Vous ne pouvez pas "
-                       "commencer un nouveau tournoi en parallèle. \n"
-                       "1 - Oui\n"
-                       "2 - Non, plus tard\n"
-                       "3 - Supprimer les données du tournoi\n"
-                       "Entrez le chiffre correspondant à votre choix : ")
-            choice = view.display_in(message)
-        except choice not in {'1', '2', '3'}:
-            message = ("Choix invalide. Entrez un chiffre compris "
-                       "entre 1 et 3")
-            view.display_out(message)
+        while True:
+            try:
+                message = ("Reprendre le tournoi en cours ? Vous ne pouvez pas"
+                           " commencer un nouveau tournoi en parallèle. \n"
+                           "1 - Oui\n"
+                           "2 - Non, plus tard\n"
+                           "3 - Supprimer les données du tournoi\n"
+                           "Entrez le chiffre correspondant à votre choix : ")
+                choice = view.display_in(message)
+                if choice in {'1', '2', '3'}:
+                    break
+                else:
+                    message = ("Choix invalide. Entrez un chiffre compris "
+                               "entre 1 et 3")
+                    view.display_out(message)
+            except ValueError:
+                message = ("Choix invalide. Entrez un chiffre compris "
+                           "entre 1 et 3")
+                view.display_out(message)
         if choice == '1':
             data = load_data()
             partial_tournament(data[0], data[1], data[2],
