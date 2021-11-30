@@ -94,10 +94,21 @@ def create_player_list():
                                                  player_data[j].ranking))
             view.display_out(message)
             k += 1
-        message = ("Entrez l'id correspondant au joueur que "
-                   "vous souhaitez ajouter : ")
-        option = int(view.display_in(message))
-        option -= 1
+        while True:
+            try:
+                message = ("Entrez l'id correspondant au joueur que "
+                           "vous souhaitez ajouter : ")
+                option = int(view.display_in(message))
+                option -= 1
+                if 0 < option < len(player_data):
+                    break
+                else:
+                    message = "Erreur, veuillez entrer un choix valide."
+                    view.display_out(message)
+            except ValueError:
+                message = "Erreur, veuillez entrer un choix valide."
+                view.display_out(message)
+
         for item in enumerate(player_data):
             if item[0] == option:
                 player = player_data.pop(option)
@@ -157,6 +168,7 @@ def create_tournament(player_list):
                 save_data(player_list_top, player_list_bottom, tournament,
                           match_id, matchs_played, round_name, round_start)
             round_end = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            print(tournament.r1_result)
             tournament.rounds_list.append([round_name, round_start, round_end])
         elif i > 0:
             pairs = pairing(player_list_top, player_list_bottom, match_id)

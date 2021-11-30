@@ -83,20 +83,53 @@ def option5():
                                             tournament.start_date)
         view.display_out(message)
         i += 1
-    message = "Entrez l'ID d'un tournoi pour plus de détails : "
-    choice = int(view.display_in(message))
-    message = ("1 - Liste des joueurs du tournoi\n"
-               "2 - Liste des tours\n"
-               "3 - Liste des matchs\n"
-               "0 - Retour au menu\n"
-               "Entrez votre choix : ")
-    choice2 = int(view.display_in(message))
+
+    while True:
+        try:
+            message = "Entrez l'ID d'un tournoi pour plus de détails : "
+            choice = int(view.display_in(message))
+            if 0 < choice < len(tournaments_list) + 1:
+                break
+            else:
+                message = "Erreur, veuillez entrer un choix valide."
+                view.display_out(message)
+        except ValueError:
+            message = "Erreur, veuillez entrer un choix valide."
+            view.display_out(message)
+
+    while True:
+        try:
+            message = ("1 - Liste des joueurs du tournoi\n"
+                       "2 - Liste des tours\n"
+                       "3 - Liste des matchs\n"
+                       "0 - Retour au menu\n"
+                       "Entrez votre choix : ")
+            choice2 = int(view.display_in(message))
+            if choice2 in {0, 1, 2, 3}:
+                break
+            else:
+                message = "Erreur, veuillez entrer un choix valide."
+                view.display_out(message)
+        except ValueError:
+            message = "Erreur, veuillez entrer un choix valide."
+            view.display_out(message)
+
     if choice2 == 1:
-        message = ("1 - Lister par ordre alphabétique\n"
-                   "2 - Lister par classement\n"
-                   "3 - Lister par total de points\n"
-                   "Entrez votre choix : ")
-        choice3 = int(view.display_in(message))
+        while True:
+            try:
+                message = ("1 - Lister par ordre alphabétique\n"
+                           "2 - Lister par classement\n"
+                           "3 - Lister par total de points\n"
+                           "Entrez votre choix : ")
+                choice3 = int(view.display_in(message))
+                if choice3 in {1, 2, 3}:
+                    break
+                else:
+                    message = "Erreur, veuillez entrer un choix valide."
+                    view.display_out(message)
+            except ValueError:
+                message = "Erreur, veuillez entrer un choix valide."
+                view.display_out(message)
         display_tournament_data(choice, choice2, choice3)
     elif choice != 0:
         display_tournament_data(choice, choice2, 0)
@@ -104,9 +137,7 @@ def option5():
 
 def main_menu():
     while True:
-        view.print_menu()
-        message = "Entrez votre choix : "
-        option = view.display_in(message)
+        option = view.print_menu()
         if option == '1':
             option1()
         elif option == '2':

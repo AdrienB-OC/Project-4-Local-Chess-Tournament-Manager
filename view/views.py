@@ -94,3 +94,7 @@ class View:
         }
         for key in menu_options.keys():
             View.display_out(self, f"{key} -- {menu_options[key]}")
+
+        option = input("Entrez votre choix :")
+
+        return option
