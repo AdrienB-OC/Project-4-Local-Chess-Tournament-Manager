@@ -10,7 +10,8 @@ view = View()
 
 
 def convert_to_tuple(tournament, c_round):
-
+    # Converts serialized matches' results back to tuples to respect the
+    # requested format.
     for i in range(0, c_round + 1):
         if i == 0:
             r = tournament.r1_result

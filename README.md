@@ -5,7 +5,7 @@
 
 Extract the repository's files in a folder of your choosing
 
-### Setup the virtual environment :
+### 1 - Setup the virtual environment :
 
 
 In your command bash/shell go in the folder containing the files
@@ -35,16 +35,16 @@ source venv/bin/activate
 (venv) C:\>
 ```
 
-### Install the libraries required to run the script :
+### 2 - Install the libraries required to run the script :
 
-In the virtual environment (command bash/shell) type : 
+In the virtual environment (command bash/shell), go in the project's main folder (with the main.py file) and type : 
 ```
 pip(3) install -r requirements.txt
 ```
+If you get an importlib-metadata version related error, remove the "==4.8.2" part from "importlib-metadata==4.8.2" in the requirements.txt file.
 
 
-
-You can now run the script :  
+### You can now run the script :  
 Windows
 ```
 C:\Folder\containing\py\files\main.py
@@ -54,14 +54,14 @@ Unix/mac
 ```
 python3 main.py
 ```
-
+See below for more details on how to use the script.  
 # Making use of the script :
 
 You have 2 options :  
-## Use the ready to use database in the "exemple_bdd" folder
-Simply drag the 2 files (players_db.json and tournaments_db.json) in the main folder (the one with the main.py file) and run the script.  
+## 1 - Use the ready to use database in the "exemple_bdd" folder
+Simply drag/copy the 2 files (players_db.json and tournaments_db.json) in the main folder (the one with the main.py file) and run the script.  
 You can add more data to these 2 files via the script.
-## Create your own databases
+## 2 - Create your own databases
 Run the script, you will then need to add at least 8 players via the 1st main menu option.  
 Consulting tournament data will require you to run at least 1 full tournament via the 4th main menu option.
 

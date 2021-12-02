@@ -77,10 +77,13 @@ class View:
         return name, location, time_control, description
 
     def display_in(self, display):
+        # Displays the message passed in argument, asks for an input and
+        # returns it.
         option = input(display)
         return option
 
     def display_out(self, display):
+        # Displays the message passed in argument.
         print(display)
 
     def print_menu(self):
